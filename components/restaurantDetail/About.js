@@ -1,21 +1,31 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 
-const image = "https://t3.ftcdn.net/jpg/03/24/73/92/360_F_324739203_keeq8udvv0P2h1MLYJ0GLSlTBagoXS48.jpg"
+const yelpRestaurantInfo = {
+  name: "Farmhouse Kitchen Thai Cuisine",
+  image: "https://www.thespruceeats.com/thmb/D9hctWPH31A5oiQ34J4Hknc6x0Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1042998066-518ca1d7f2804eb09039e9e42e91667c.jpg",
+  price: "$$",
+  reviews: '1500',
+  rating: 4.5,
+  categories: [{title: 'Thai'}, {title: 'Comfort Food'}],
+}
 
-const title = "Farm";
+const {name, image, price, reviews, rating, categories } = yelpRestaurantInfo
 
-const description = "Thai • Comfort Food • $$ • (2913+)"
+const formattedCategories = categories.map((cat) => cat.title).join(" • ");
 
-export default function About(props) {
+const description = `${formattedCategories} ${
+  price ? " • " + price : ""
+} • 🎫 • ${rating} ⭐ (${reviews}+)`;
 
-  return (
-    <View>
-      <RestaurantImage image={image} />
-      <RestaurantName title={title} />
-      <RestaurantDescription description={description} />
-    </View>
-  );
+export default function About() {
+return (
+  <View>
+    <RestaurantImage image={image} />
+    <RestaurantName name={name} />
+    <RestaurantDescription description={description} />
+  </View>
+);
 }
 
 const RestaurantImage = (props) => (
